@@ -1,0 +1,67 @@
+{
+  "user_data": {
+    "first_name": "char(50)",
+    "last_name": "char(50)",
+    "email": "",
+    "sex": "M=0 or F=1",
+    "height": "int",
+    "age": "int",
+    "weight": "int",
+    "country": "char(70)",
+    "state": "char(70)",
+    "city": "char(70)",
+    "user_type": "0 o 1",
+    "test_result": "float",
+    "load_result": "boolean"
+  },
+  "medical_record": {
+    "type_of_blood": "0 a 7 (-0,+0,-a,+a,-b,+b,-ab+,+ab)",
+    "is_transplant_patient": "Boolean",
+    "is_pregnant": "Boolean",
+    "Feeding_baby_breast_milk": "Boolean",
+    "oncology_patient": "Boolean",
+    "vih_positive": "Boolean",
+    "heart_problems": "boolean",
+    "asma": "boolean",
+    "any_lung_disease": "boolean",
+    "diabete": "boolean",
+    "kidney_failure": "boolean",
+    "liver_disease": "boolean",
+    "have_any_immune_system_disease": "boolean",
+    "hypertension": "boolean",
+    "overweight": "boolean",
+    "have_any_metabolic_disease": "boolean",
+    "has_any_neurological_disease": "boolean",
+    "have_kidney_disease": "boolean"
+  },
+  "smoker": {
+    "smoke": " int range 0-5"
+  },
+  "exposure": {
+    "use_regularly_public_tranportation": "int range 0 - 8",
+    "go_shopping_regularly": "bolean",
+    "how_expose_on_work": "int 1 to 10",
+    "lately_went_to_hospital": "boolean",
+    "had_contact_with_person_that_have_covid_symptoms": "boolean",
+    "use_daily_mask_and_disinfectant": "boolean",
+    "live_or_work_in_an_area_of_​​spread_or_contagion": "boolean",
+    "activity_more_than_10": "boolean",
+    "face_to_face_Service_on_home": "boolean"
+  },
+  "symptoms": {
+    "Have_or_had_fever": "boolean",
+    "Have_or_had_a_cough": "boolean",
+    "Have_or_had_catarrh": "boolean",
+    "feel_or_felt_weak": "boolean",
+    "feel_or_felt_pain": "boolean",
+    "Have_or_had_stomatc_pain": "boolean",
+    "Have_or_had_headache": "boolean",
+    "Have_or_had_lost_smell": "boolean",
+    "Have_or_had_lost_taste": "boolean",
+    "Have_or_had_sore_throat": "boolean",
+    "Have_or_had_problem_breathing": "boolean",
+    "Have_or_had_pain_chest": "boolean",
+    "Have_or_had_dizziness": "boolean",
+    "Have_or_had_movement_problem": "boolean"
+  }
+}

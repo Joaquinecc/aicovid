@@ -1,0 +1,67 @@
+{
+  "user_data": {
+    "first_name": "Test",
+    "last_name": "apellidp",
+    "email": "email@gmail.com",
+    "sex": "M",
+    "height": "120",
+    "age": "20",
+    "weight": "10",
+    "country": "char(70)",
+    "state": "char(70)",
+    "city": "char(70)",
+    "user_type": "T",
+    "test_result": "10",
+    "load_result": "10"
+  },
+  "medical_record": {
+    "type_of_blood": "1",
+    "is_transplant_patient": "false",
+    "is_pregnant": "false",
+    "Feeding_baby_breast_milk": "false",
+    "oncology_patient": "false",
+    "vih_positive": "false",
+    "heart_problems": "false",
+    "asma": "false",
+    "any_lung_disease": "false",
+    "diabete": "false",
+    "kidney_failure": "false",
+    "liver_disease": "false",
+    "have_any_immune_system_disease": "false",
+    "hypertension": "false",
+    "overweight": "false",
+    "have_any_metabolic_disease": "false",
+    "has_any_neurological_disease": "false",
+    "have_kidney_disease": "false"
+  },
+  "smoker": {
+    "smoke": " 0"
+  },
+  "exposure": {
+    "use_regularly_public_tranportation": "0",
+    "go_shopping_regularly": "false",
+    "how_expose_on_work": "1",
+    "lately_went_to_hospital": "false",
+    "had_contact_with_person_that_have_covid_symptoms": "false",
+    "use_daily_mask_and_disinfectant": "false",
+    "live_or_work_in_an_area_of_​​spread_or_contagion": "false",
+    "activity_more_than_10": "false",
+    "face_to_face_Service_on_home": "false"
+  },
+  "symptoms": {
+    "Have_or_had_fever": "false",
+    "Have_or_had_a_cough": "false",
+    "Have_or_had_catarrh": "false",
+    "feel_or_felt_weak": "false",
+    "feel_or_felt_pain": "false",
+    "Have_or_had_stomatc_pain": "false",
+    "Have_or_had_headache": "false",
+    "Have_or_had_lost_smell": "false",
+    "Have_or_had_lost_taste": "false",
+    "Have_or_had_sore_throat": "false",
+    "Have_or_had_problem_breathing": "false",
+    "Have_or_had_pain_chest": "false",
+    "Have_or_had_dizziness": "false",
+    "Have_or_had_movement_problem": "false"
+  }
+}
