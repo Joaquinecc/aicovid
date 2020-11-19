@@ -3,11 +3,13 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
-MASCULINO = 0
-FEMENINO = 1
+MASCULINO = 1
+FEMENINO = 2
+NOWANT=0
 SEXO_CHOICES = (
     (MASCULINO, 'M'),
-    (FEMENINO, 'F')
+    (FEMENINO, 'F'),
+    (NOWANT, 'No especifica')
 )
 TESTER = 0 
 LOADER = 1
@@ -17,19 +19,19 @@ USER_TYPE_CHOICES = (
 )
 
 class UserData(models.Model):
-    first_name = models.CharField(max_length=50,null=True)
-    last_name=  models.CharField(max_length=50,null=True)
-    age=models.PositiveIntegerField(null=True)
-    email= models.EmailField(unique=True,null=True,blank=True)
+    first_name = models.CharField(max_length=50,null=True,blank=True)
+    last_name=  models.CharField(max_length=50,null=True,blank=True)
+    age=models.PositiveIntegerField(null=True,blank=True)
+    email= models.EmailField(blank=True,null=True)
     sex = models.PositiveSmallIntegerField(choices=SEXO_CHOICES, null=True, blank=True)
-    weight = models.PositiveSmallIntegerField(null=True)
-    height = models.PositiveSmallIntegerField(null=True,)
-    country = models.CharField(max_length=70,null=True)
-    state = models.CharField(max_length=70,null=True)
-    city = models.CharField(max_length=70,null=True)
+    weight = models.PositiveSmallIntegerField(null=True,blank=True)
+    height = models.PositiveSmallIntegerField(null=True,blank=True)
+    country = models.CharField(max_length=70,null=True,blank=True)
+    state = models.CharField(max_length=70,null=True,blank=True)
+    city = models.CharField(max_length=70,null=True,blank=True)
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
-    load_result=models.BooleanField(null=True)
-    test_result =models.FloatField(null=True,validators=[MinValueValidator(0)])
+    load_result=models.BooleanField(null=True,blank=True)
+    test_result =models.FloatField(null=True,validators=[MinValueValidator(0)],blank=True)
     def __str__(self):
         return self.first_name+' '+self.last_name+' ('+ str(self.pk) +')'
 ON=0
@@ -119,7 +121,7 @@ class Exposure(models.Model):
     user=models.OneToOneField(UserData,on_delete=models.CASCADE,unique=True)
     use_regularly_public_tranportation=models.PositiveIntegerField(choices=TYPE_OF_PUBLIC_TRANSPORTATION,null=True)
     go_shopping_regularly=models.BooleanField(default=False,null=True)
-    how_expose_on_work=models.IntegerField(null=True,validators=[MaxValueValidator(10), MinValueValidator(1)])
+    how_expose_on_work=models.IntegerField(null=True,validators=[MaxValueValidator(10), MinValueValidator(1)],blank=True)
     lately_went_to_hospital=models.BooleanField(default=False,null=True)
     had_contact_with_person_that_have_covid_symptoms=models.BooleanField(default=False,null=True)
     use_daily_mask_and_disinfectant=models.BooleanField(default=False,null=True)
@@ -135,7 +137,7 @@ class Symptom(models.Model):
     Have_or_had_a_cough=models.BooleanField()
     Have_or_had_catarrh=models.BooleanField()
     feel_or_felt_weak=models.BooleanField()
-    feel_or_felt_pain=models.BooleanField()
+    feel_or_felt_pain=models.BooleanField(null=True,blank=True,default=False)
     Have_or_had_stomatc_pain=models.BooleanField()
     Have_or_had_headache=models.BooleanField()
     Have_or_had_lost_smell=models.BooleanField()

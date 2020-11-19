@@ -17,6 +17,8 @@ class FormView(APIView):
         smoker=request.data['smoker']
         exposure=request.data['exposure']
         symptoms=request.data['symptoms']
+        print("/n/n/n/n rquest user_data = ",user_data,"\n\n\n\n\n")
+
         user_data_serializer=serializers.UserDataSerializer(data=user_data)
         if user_data_serializer.is_valid(raise_exception=True):
             user_data_serializer.save()
