@@ -18,6 +18,7 @@ USER_TYPE_CHOICES = (
     (LOADER,'Loader')
 )
 
+
 class UserData(models.Model):
     first_name = models.CharField(max_length=50,null=True,blank=True)
     last_name=  models.CharField(max_length=50,null=True,blank=True)
@@ -31,7 +32,10 @@ class UserData(models.Model):
     city = models.CharField(max_length=70,null=True,blank=True)
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
     load_result=models.BooleanField(null=True,blank=True)
+    did_covid_test=models.PositiveIntegerField(null=True,blank=True)
+    when_covid=models.PositiveIntegerField(null=True,blank=True)
     test_result =models.FloatField(null=True,validators=[MinValueValidator(0)],blank=True)
+    reject=models.BooleanField(default=False,null=True)
     def __str__(self):
         return self.first_name+' '+self.last_name+' ('+ str(self.pk) +')'
 ON=0
@@ -54,7 +58,7 @@ BLOOD_TYPE_CHOICES=(
 )
 
 class MedicalRecord(models.Model):
-    user=models.OneToOneField(UserData,on_delete=models.CASCADE,unique=True)
+    user=models.OneToOneField(UserData,on_delete=models.CASCADE,null=True)
     blood_type=models.PositiveIntegerField(choices=BLOOD_TYPE_CHOICES,null=True)
     is_transplant_patient=models.BooleanField(null=True,default=False)
     is_pregnant =models.BooleanField(null=True,default=False)
