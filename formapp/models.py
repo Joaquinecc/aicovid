@@ -14,8 +14,8 @@ SEXO_CHOICES = (
 TESTER = 0 
 LOADER = 1
 USER_TYPE_CHOICES = (
-    (TESTER,'Tester'),
-    (LOADER,'Loader')
+    (LOADER,'Tester'),
+    (TESTER,'Loader')
 )
 
 
@@ -100,25 +100,12 @@ class Smoker(models.Model):
     smoke_status=models.PositiveIntegerField(choices= SMOKE_STATUS_CHOICE,null=True)
     def __str__(self):
         return self.user.first_name+' '+self.user.last_name+' ('+ str(self.user.pk) +')'
-BUS=0
-TAXI=1
-UBER=2
-LYFT=3
-TRAIN=4
-METRO=5
-PUBLIC_BYCICLE=6
-NONE=7
-OTHER = 8
+
+
 TYPE_OF_PUBLIC_TRANSPORTATION=(
-    (BUS, "Bus"),
-    (TAXI,"Taxi"),
-    (UBER,"Uber"),
-    (LYFT,"Lyft"),
-    (TRAIN,"Train"),
-    (METRO,"Metro"),
-    (PUBLIC_BYCICLE,"Public Bycicle"),
-    (NONE, "None"),
-    (OTHER,"Other")
+    (0, "No lo utilizo"),
+    (1,"servicio de bus, metro o similares"),
+    (2,"servicio de taxi, uber o similares"),
 )
 
 class Exposure(models.Model):
