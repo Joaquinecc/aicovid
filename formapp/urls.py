@@ -13,5 +13,7 @@ router.register(r'symptoms', views.SymptomsView)
 urlpatterns = [
    path('', include(router.urls)),  
    path('forms/',views.FormView.as_view()) ,
-   path('ml/',views.MLview) 
+   path('ml/',views.MLview),
+   path('login/',views.login_view_aicovid) 
+
     ]

@@ -5,6 +5,15 @@ from . import serializers,models
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import random
+from django.contrib.auth import authenticate, login
+@api_view(['POST'])
+def login_view_aicovid(request):
+    username = request.data['username']
+    password = request.data['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        return Response({"login": True}) 
+    return Response({"login": False})
 class AudioView(viewsets.ModelViewSet):
     queryset=models.UserAudio.objects.all()
     serializer_class=serializers.UserAudioSerializer
