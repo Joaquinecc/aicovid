@@ -8,7 +8,7 @@ router.register(r'audio', views.AudioView)
 router.register(r'userdata', views.UserDataView)
 router.register(r'medical', views.MedicalRecordView)
 router.register(r'exposure', views.ExposureView)
-router.register(r'audio', views.SmokerView)
+router.register(r'smoker', views.SmokerView)
 router.register(r'symptoms', views.SymptomsView)
 urlpatterns = [
    path('', include(router.urls)),  
