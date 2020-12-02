@@ -8,7 +8,23 @@ import random
 class AudioView(viewsets.ModelViewSet):
     queryset=models.UserAudio.objects.all()
     serializer_class=serializers.UserAudioSerializer
-   
+class UserDataView(viewsets.ModelViewSet):
+    queryset=models.UserData.objects.all()
+    serializer_class=serializers.UserDataSerializer
+class MedicalRecordView(viewsets.ModelViewSet):
+    queryset=models.MedicalRecord.objects.all()
+    serializer_class=serializers.MedicalRecordSerializer
+class ExposureView(viewsets.ModelViewSet):
+    queryset=models.Exposure.objects.all()
+    serializer_class=serializers.ExposureSerializer
+class SmokerView(viewsets.ModelViewSet):
+    queryset=models.Smoker.objects.all()
+    serializer_class=serializers.SmokerSerializer
+class SymptomsView(viewsets.ModelViewSet):
+    queryset=models.Symptom.objects.all()
+    serializer_class=serializers.SymptomSerializer
+       
+       
 class FormView(APIView):
     def post(self, request, format=None):
         print("/n/n/n/n rquest data = ",request.data,"\n\n\n\n\n")

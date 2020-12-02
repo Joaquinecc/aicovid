@@ -17,7 +17,11 @@ USER_TYPE_CHOICES = (
     (LOADER,'Tester'),
     (TESTER,'Loader')
 )
-
+STATES_CHOICES = (
+    (0,'REJETED'),
+    (1,'ACCEPTED'),
+    (2,'PENDING'),
+)
 
 class UserData(models.Model):
     first_name = models.CharField(max_length=50,null=True,blank=True)
@@ -35,7 +39,7 @@ class UserData(models.Model):
     did_covid_test=models.PositiveIntegerField(null=True,blank=True)
     when_covid=models.PositiveIntegerField(null=True,blank=True)
     test_result =models.FloatField(null=True,validators=[MinValueValidator(0)],blank=True)
-    reject=models.BooleanField(default=False,null=True)
+    reject=models.PositiveIntegerField(choices=STATES_CHOICES,default=2,null=True)
     def __str__(self):
         return self.first_name+' '+self.last_name+' ('+ str(self.pk) +')'
 ON=0
