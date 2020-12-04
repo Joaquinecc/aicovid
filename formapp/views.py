@@ -32,7 +32,7 @@ class SmokerView(viewsets.ModelViewSet):
 class SymptomsView(viewsets.ModelViewSet):
     queryset=models.Symptom.objects.all()
     serializer_class=serializers.SymptomSerializer
-       
+
        
 class FormView(APIView):
     def post(self, request, format=None):
@@ -67,6 +67,24 @@ class FormView(APIView):
                 if exposure_serializer.is_valid(raise_exception=True):
                     exposure_serializer.save()
                 return Response({'user_id':user},status=status.HTTP_201_CREATED)
+    def get(self, request, format=None):
+        user=serializers.UserDataSerializer(models.UserData.objects.all(),many=True).data
+        smoker=serializers.SmokerSerializer(models.Smoker.objects.all(),many=True).data
+        exposure=serializers.ExposureSerializer(models.Exposure.objects.all(),many=True).data
+        symptoms=serializers.SymptomSerializer(models.Symptom.objects.all(),many=True).data
+        audio=serializers.UserAudioSerializer(models.UserAudio.objects.all(),many=True).data
+        medical=serializers.MedicalRecordSerializer(models.MedicalRecord.objects.all(),many=True).data
+        data=[]
+        for i in range (len(user)):
+            user[i].update(symptoms[i])
+            user[i].update(exposure[i])
+            user[i].update(medical[i])
+            user[i].update(smoker[i])
+            user[i].update(audio[i])
+            data.append(user)
+            
+        return Response({"data": data})
+
 @api_view(['POST'])
 def MLview(request):
     if request.method == 'POST':
