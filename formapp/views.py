@@ -35,7 +35,11 @@ class SymptomsView(viewsets.ModelViewSet):
     queryset=models.Symptom.objects.all()
     serializer_class=serializers.SymptomSerializer
 
-       
+def orderByuser(e):
+    return e['user']
+def orderById(e):
+    return e['id']
+   
 class FormView(APIView):
     def post(self, request, format=None):
         print("/n/n/n/n rquest data = ",request.data,"\n\n\n\n\n")
@@ -71,11 +75,17 @@ class FormView(APIView):
                 return Response({'user_id':user},status=status.HTTP_201_CREATED)
     def get(self, request, format=None):
         user=serializers.UserDataSerializer(models.UserData.objects.all(),many=True).data
+        user.sort(key=orderById)
         smoker=serializers.SmokerSerializer(models.Smoker.objects.all(),many=True).data
+        smoker.sort(key=orderByuser)
         exposure=serializers.ExposureSerializer(models.Exposure.objects.all(),many=True).data
+        exposure.sort(key=orderByuser)
         symptoms=serializers.SymptomSerializer(models.Symptom.objects.all(),many=True).data
+        symptoms.sort(key=orderByuser)
         audio=serializers.UserAudioSerializer(models.UserAudio.objects.all(),many=True).data
+        audio.sort(key=orderByuser)
         medical=serializers.MedicalRecordSerializer(models.MedicalRecord.objects.all(),many=True).data
+        medical.sort(key=orderByuser)
         data=[]
         for i in range (len(user)):
             user[i].update(symptoms[i])
@@ -84,7 +94,6 @@ class FormView(APIView):
             user[i].update(smoker[i])
             user[i].update(audio[i])
             data.append(user)
-            
         return Response({"data": data})
 
 @api_view(['POST'])
@@ -115,5 +124,6 @@ def AudiosViewGet(request,pk,audiotype):
             response['Content-Disposition'] = 'attachment; filename=%s' % filename
             return response
         except:
-            return  HttpResponseBadRequest
+            return  HttpResponseBadRequest("Bad Request")
+    return Response({"Failed": True}, status=status.HTTP_400_BAD_REQUEST) 
 
