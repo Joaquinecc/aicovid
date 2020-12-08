@@ -104,6 +104,7 @@ def MLview(request):
 def AudiosViewGet(request,pk,audiotype):
     if request.method == 'GET':
         print("Pk del user",pk)
+        print('audiotype ',audiotype)
         try:
             useraudio=models.UserAudio.objects.get(user=pk)
             if audiotype == 'cough':
