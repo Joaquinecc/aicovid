@@ -14,6 +14,7 @@ urlpatterns = [
    path('', include(router.urls)),  
    path('forms/',views.FormView.as_view()) ,
    path('ml/',views.MLview),
+   path('useraudio/<int:pk>/<str:audiotype>/',views.AudiosViewGet),
    path('login/',views.login_view_aicovid) 
 
     ]

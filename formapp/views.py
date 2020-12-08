@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import random
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.http import HttpResponseNotFound, HttpResponseBadRequest
 @api_view(['POST'])
 def login_view_aicovid(request):
     username = request.data['username']
@@ -89,3 +91,29 @@ class FormView(APIView):
 def MLview(request):
     if request.method == 'POST':
         return Response({"ml": random.randint(0, 100)})
+@api_view(['GET'])
+def AudiosViewGet(request,pk,audiotype):
+    if request.method == 'GET':
+        print("Pk del user",pk)
+        try:
+            useraudio=models.UserAudio.objects.get(user=pk)
+            if audiotype == 'cough':
+                filename = useraudio.cough.name.split('/')[-1]
+                response = HttpResponse(useraudio.cough, content_type='text/plain')
+            elif audiotype == 'phrase1':
+                filename = useraudio.phrase1.name.split('/')[-1]
+                response = HttpResponse(useraudio.phrase1, content_type='text/plain')
+            elif audiotype == 'phrase2':
+                filename = useraudio.phrase2.name.split('/')[-1]
+                response = HttpResponse(useraudio.phrase2, content_type='text/plain')
+            elif audiotype == 'phrase3':
+                filename = useraudio.phrase3.name.split('/')[-1]
+                response = HttpResponse(useraudio.phrase3, content_type='text/plain')
+            else:
+                return HttpResponseNotFound("Such file dont exist")  
+
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename
+            return response
+        except:
+            return  HttpResponseBadRequest
+
