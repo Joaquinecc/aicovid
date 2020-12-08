@@ -107,8 +107,10 @@ def AudiosViewGet(request,pk,audiotype):
         print('audiotype ',audiotype)
         try:
             useraudio=models.UserAudio.objects.get(user=pk)
+            print(useraudio.user.name)
             if audiotype == 'cough':
                 filename = useraudio.cough.name.split('/')[-1]
+                print('filename',filename)
                 response = HttpResponse(useraudio.cough, content_type='text/plain')
             elif audiotype == 'phrase1':
                 filename = useraudio.phrase1.name.split('/')[-1]
