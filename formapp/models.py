@@ -152,7 +152,9 @@ def size_limit(file):
 class UserAudio(models.Model):
     user=models.OneToOneField(UserData,on_delete=models.CASCADE,unique=True)
     cough = models.FileField(upload_to='audio/cough/' ,null=True,validators=[size_limit],blank=True )    
-    phrase = models.FileField(upload_to='audio/phrase/', null=True,validators=[size_limit],blank=True )
+    phrase1 = models.FileField(upload_to='audio/phrase/', null=True,validators=[size_limit],blank=True )
+    phrase2 = models.FileField(upload_to='audio/phrase/', null=True,validators=[size_limit],blank=True )
+    phrase3 = models.FileField(upload_to='audio/phrase/', null=True,validators=[size_limit],blank=True )
     def __str__(self):
         return self.user.first_name+' '+self.user.last_name+' ('+ str(self.user.pk) +')'  
 
